@@ -11,16 +11,20 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
+/**
+ * Classe gérant le panneau d'affichage du choix de la stratégie de vente.
+ */
 public class PanneauStrategie extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	* Constructeur du panneau stratégie
+	*/
 	public PanneauStrategie() {
-
 		ButtonGroup groupeBoutons = new ButtonGroup();
 		JRadioButton strategie1 = new JRadioButton("Stratégie 1");
-		JRadioButton strategie2 = new JRadioButton("Stratégie 2");	
-		
+		JRadioButton strategie2 = new JRadioButton("Stratégie 2");
 		JButton boutonConfirmer = new JButton("Confirmer");
 
 		boutonConfirmer.addActionListener((ActionEvent e) -> {
@@ -31,7 +35,6 @@ public class PanneauStrategie extends JPanel {
 		});
 
 		JButton boutonAnnuler = new JButton("Annuler");
-
 		boutonAnnuler.addActionListener((ActionEvent e) -> {
 			// Fermer la fenêtre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
@@ -43,7 +46,6 @@ public class PanneauStrategie extends JPanel {
 		add(strategie2);		
 		add(boutonConfirmer);
 		add(boutonAnnuler);
-
 	}
 
 	/**

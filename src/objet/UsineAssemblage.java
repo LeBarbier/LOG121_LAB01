@@ -1,10 +1,12 @@
 package objet;
 
 public class UsineAssemblage implements Noeud {
+    public String cheminICone;
     private Composante composanteSortie;
     private int dureeProduction;
 
-    public UsineAssemblage(Composante _composanteSortie, int _dureeProduction){
+    public UsineAssemblage(Composante _composanteSortie, int _dureeProduction, String _cheminIcone){
+        cheminICone = _cheminIcone;
         composanteSortie = _composanteSortie;
         dureeProduction = _dureeProduction;
     }

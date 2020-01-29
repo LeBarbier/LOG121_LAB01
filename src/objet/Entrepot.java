@@ -3,11 +3,13 @@ package objet;
 import java.util.Map;
 
 public class Entrepot implements Noeud {
+    public String cheminICone;
     int limiteEntreposage;
     Map<Composante, Integer> composanteEntrepose;
     StrategieVente strategieVente; // Va etre initialiser selon either venteAleatoire ou venteIntervalleFixe
 
-    public Entrepot(int _limiteEntreposage){
+    public Entrepot(int _limiteEntreposage, String _cheminIcone){
+        cheminICone = _cheminIcone;
         limiteEntreposage = _limiteEntreposage;
     }
 

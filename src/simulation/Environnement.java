@@ -2,7 +2,6 @@ package simulation;
 
 import javax.swing.SwingWorker;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Observer;
 
 public class Environnement extends SwingWorker<Object, String> implements Observateur {

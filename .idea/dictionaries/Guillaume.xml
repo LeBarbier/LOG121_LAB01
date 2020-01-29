@@ -1,12 +1,30 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Guillaume">
     <words>
+      <w>affichage</w>
+      <w>ailes</w>
       <w>ajouter</w>
       <w>aleatoire</w>
+      <w>annuler</w>
+      <w>appeler</w>
+      <w>avion</w>
+      <w>bonne</w>
+      <w>bouton</w>
+      <w>boutons</w>
+      <w>changement</w>
+      <w>chaîne</w>
+      <w>chemin</w>
+      <w>choix</w>
+      <w>classe</w>
+      <w>composant</w>
       <w>composante</w>
       <w>composantes</w>
+      <w>confirmer</w>
+      <w>constructeur</w>
       <w>duree</w>
       <w>début</w>
+      <w>empêcher</w>
+      <w>entrainé</w>
       <w>entreposage</w>
       <w>entrepose</w>
       <w>entrepot</w>
@@ -15,19 +33,42 @@
       <w>evaluer</w>
       <w>faire</w>
       <w>fenetre</w>
+      <w>fenêtre</w>
+      <w>ferme</w>
+      <w>fermer</w>
       <w>fixe</w>
+      <w>groupe</w>
+      <w>gérant</w>
+      <w>icone</w>
       <w>indicateur</w>
       <w>initialiser</w>
       <w>intervalle</w>
       <w>laboratoire</w>
       <w>limite</w>
+      <w>liste</w>
+      <w>mettre</w>
       <w>noeud</w>
+      <w>noeuds</w>
       <w>observateur</w>
+      <w>panneau</w>
       <w>principale</w>
       <w>projet</w>
+      <w>propriété</w>
+      <w>redimension</w>
+      <w>rendre</w>
+      <w>ressources</w>
+      <w>retourne</w>
       <w>selon</w>
+      <w>sorte</w>
+      <w>strategie</w>
+      <w>stratégie</w>
+      <w>sélectionné</w>
+      <w>taille</w>
+      <w>temporaires</w>
       <w>usine</w>
       <w>vente</w>
+      <w>vitesse</w>
+      <w>évènement</w>
     </words>
   </dictionary>
 </component>
