@@ -2,6 +2,7 @@
   <dictionary name="Guillaume">
     <words>
       <w>accès</w>
+      <w>actuelle</w>
       <w>actuellement</w>
       <w>affichage</w>
       <w>ailes</w>
@@ -13,9 +14,11 @@
       <w>annuler</w>
       <w>appeler</w>
       <w>attribuer</w>
+      <w>aucune</w>
       <w>avancement</w>
       <w>avec</w>
       <w>avion</w>
+      <w>balise</w>
       <w>bonne</w>
       <w>bouton</w>
       <w>boutons</w>
@@ -31,6 +34,7 @@
       <w>constructeur</w>
       <w>correctement</w>
       <w>doit</w>
+      <w>donnee</w>
       <w>duree</w>
       <w>début</w>
       <w>désiré</w>
@@ -56,6 +60,7 @@
       <w>gérant</w>
       <w>icone</w>
       <w>icones</w>
+      <w>inclure</w>
       <w>indicateur</w>
       <w>informations</w>
       <w>initialiser</w>
@@ -66,10 +71,15 @@
       <w>ligne</w>
       <w>limite</w>
       <w>liste</w>
+      <w>matiere</w>
+      <w>matrice</w>
+      <w>metadatas</w>
       <w>metadonnees</w>
       <w>mettre</w>
+      <w>moteur</w>
       <w>noeud</w>
       <w>noeuds</w>
+      <w>nombre</w>
       <w>nommées</w>
       <w>nécessaire</w>
       <w>observateur</w>
@@ -81,11 +91,13 @@
       <w>propriété</w>
       <w>préciser</w>
       <w>quantité</w>
+      <w>recherchee</w>
       <w>redimension</w>
       <w>rendre</w>
       <w>ressources</w>
       <w>retourne</w>
       <w>récupération</w>
+      <w>selectionnee</w>
       <w>selon</w>
       <w>sorte</w>
       <w>strategie</w>

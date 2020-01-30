@@ -1,7 +1,15 @@
 package objet;
 
-public interface Noeud {
-    int evaluerIndicateur();
+public abstract class Noeud {
+    int id;
+    int posX;
+    int posY;
 
-    void update();
+    int evaluerIndicateur(){
+        return 0;
+    }
+
+    void update(){
+
+    }
 }

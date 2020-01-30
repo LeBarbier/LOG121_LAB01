@@ -2,15 +2,18 @@ package objet;
 
 import java.util.Map;
 
-public class Entrepot implements Noeud {
+public class Entrepot extends Noeud {
     public String cheminICone;
     int limiteEntreposage;
     Map<Composante, Integer> composanteEntrepose;
     StrategieVente strategieVente; // Va etre initialiser selon either venteAleatoire ou venteIntervalleFixe
 
-    public Entrepot(int _limiteEntreposage, String _cheminIcone){
+    public Entrepot(int _id, int _limiteEntreposage, String _cheminIcone, int _posX, int _posY){
+        id = _id;
         cheminICone = _cheminIcone;
         limiteEntreposage = _limiteEntreposage;
+        posX = _posX;
+        posY = _posY;
     }
 
     public void ajouterEntreposage(Composante _composante){
@@ -22,13 +25,5 @@ public class Entrepot implements Noeud {
             }
             limiteEntreposage++;
         }
-    }
-
-    public int evaluerIndicateur() {
-        return 0;
-    }
-
-    public void update() {
-
     }
 }

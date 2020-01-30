@@ -1,6 +1,5 @@
 package simulation;
 
-import objet.Composante;
 import objet.Model;
 import objet.Noeud;
 import org.xml.sax.SAXException;
@@ -22,7 +21,7 @@ public class PanneauPrincipal extends JPanel {
 	ArrayList<Point> listePoint;
 
 	public PanneauPrincipal() throws IOException, SAXException, ParserConfigurationException {
-		ArrayList<Noeud> listeNoeud = Model.obtenirListeNoeud();
+		ArrayList<Noeud> listeNoeud = Model.obtenirConfigFichierSimulation();
 
 		listePoint = new ArrayList<>();
 		int iterateur = 0;
