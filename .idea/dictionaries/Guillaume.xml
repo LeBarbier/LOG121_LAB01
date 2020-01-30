@@ -1,12 +1,20 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Guillaume">
     <words>
+      <w>accès</w>
+      <w>actuellement</w>
       <w>affichage</w>
       <w>ailes</w>
+      <w>ajout</w>
+      <w>ajoute</w>
       <w>ajouter</w>
       <w>aleatoire</w>
+      <w>alors</w>
       <w>annuler</w>
       <w>appeler</w>
+      <w>attribuer</w>
+      <w>avancement</w>
+      <w>avec</w>
       <w>avion</w>
       <w>bonne</w>
       <w>bouton</w>
@@ -21,8 +29,11 @@
       <w>composantes</w>
       <w>confirmer</w>
       <w>constructeur</w>
+      <w>correctement</w>
+      <w>doit</w>
       <w>duree</w>
       <w>début</w>
+      <w>désiré</w>
       <w>empêcher</w>
       <w>entrainé</w>
       <w>entreposage</w>
@@ -36,28 +47,45 @@
       <w>fenêtre</w>
       <w>ferme</w>
       <w>fermer</w>
+      <w>fichier</w>
       <w>fixe</w>
+      <w>forcement</w>
+      <w>generique</w>
       <w>groupe</w>
+      <w>gère</w>
       <w>gérant</w>
       <w>icone</w>
+      <w>icones</w>
       <w>indicateur</w>
+      <w>informations</w>
       <w>initialiser</w>
       <w>intervalle</w>
+      <w>iterateur</w>
       <w>laboratoire</w>
+      <w>laquelle</w>
+      <w>ligne</w>
       <w>limite</w>
       <w>liste</w>
+      <w>metadonnees</w>
       <w>mettre</w>
       <w>noeud</w>
       <w>noeuds</w>
+      <w>nommées</w>
+      <w>nécessaire</w>
       <w>observateur</w>
+      <w>obtenir</w>
       <w>panneau</w>
+      <w>parcourir</w>
       <w>principale</w>
       <w>projet</w>
       <w>propriété</w>
+      <w>préciser</w>
+      <w>quantité</w>
       <w>redimension</w>
       <w>rendre</w>
       <w>ressources</w>
       <w>retourne</w>
+      <w>récupération</w>
       <w>selon</w>
       <w>sorte</w>
       <w>strategie</w>
@@ -65,9 +93,15 @@
       <w>sélectionné</w>
       <w>taille</w>
       <w>temporaires</w>
+      <w>toutes</w>
+      <w>trouver</w>
+      <w>trouvé</w>
       <w>usine</w>
+      <w>valeur</w>
       <w>vente</w>
       <w>vitesse</w>
+      <w>vérifier</w>
+      <w>éléments</w>
       <w>évènement</w>
     </words>
   </dictionary>

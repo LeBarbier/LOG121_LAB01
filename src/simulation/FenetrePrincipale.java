@@ -1,11 +1,15 @@
 package simulation;
 
+import org.xml.sax.SAXException;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Affichage de la page principale de l'application
@@ -19,7 +23,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	/**
 	 *
 	 */
-	public FenetrePrincipale() {
+	public FenetrePrincipale() throws ParserConfigurationException, SAXException, IOException {
 		PanneauPrincipal panneauPrincipal = new PanneauPrincipal();
 		MenuFenetre menuFenetre = new MenuFenetre();
 		add(panneauPrincipal);
