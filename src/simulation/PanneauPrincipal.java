@@ -24,11 +24,9 @@ public class PanneauPrincipal extends JPanel {
 		ArrayList<Noeud> listeNoeud = Model.obtenirConfigFichierSimulation();
 
 		listePoint = new ArrayList<>();
-		int iterateur = 0;
 
 		for (Noeud noeud : listeNoeud) {
-			listePoint.add(new Point(5+iterateur, 5+iterateur));
-			iterateur += 10;
+			listePoint.add(new Point(noeud.posX, noeud.posY));
 		}
 	}
 

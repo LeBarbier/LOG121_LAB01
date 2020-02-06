@@ -2,8 +2,8 @@ package objet;
 
 public abstract class Noeud {
     int id;
-    int posX;
-    int posY;
+    public int posX;
+    public int posY;
 
     int evaluerIndicateur(){
         return 0;

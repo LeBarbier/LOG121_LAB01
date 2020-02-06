@@ -5,6 +5,7 @@
       <w>actuelle</w>
       <w>actuellement</w>
       <w>affichage</w>
+      <w>affichés</w>
       <w>ailes</w>
       <w>ajout</w>
       <w>ajoute</w>
@@ -14,7 +15,10 @@
       <w>annuler</w>
       <w>appeler</w>
       <w>attribuer</w>
+      <w>attributs</w>
       <w>aucune</w>
+      <w>autre</w>
+      <w>autres</w>
       <w>avancement</w>
       <w>avec</w>
       <w>avion</w>
@@ -22,23 +26,36 @@
       <w>bonne</w>
       <w>bouton</w>
       <w>boutons</w>
+      <w>capacite</w>
+      <w>cette</w>
+      <w>chacun</w>
+      <w>chacune</w>
+      <w>chacunes</w>
       <w>changement</w>
       <w>chaîne</w>
       <w>chemin</w>
       <w>choix</w>
       <w>classe</w>
+      <w>comme</w>
       <w>composant</w>
       <w>composante</w>
       <w>composantes</w>
       <w>confirmer</w>
       <w>constructeur</w>
       <w>correctement</w>
+      <w>créer</w>
+      <w>deux</w>
       <w>doit</w>
+      <w>doivent</w>
+      <w>donc</w>
       <w>donnee</w>
       <w>duree</w>
       <w>début</w>
       <w>désiré</w>
+      <w>détermine</w>
       <w>empêcher</w>
+      <w>enfant</w>
+      <w>enfants</w>
       <w>entrainé</w>
       <w>entreposage</w>
       <w>entrepose</w>
@@ -57,6 +74,7 @@
       <w>generique</w>
       <w>groupe</w>
       <w>gère</w>
+      <w>générer</w>
       <w>gérant</w>
       <w>icone</w>
       <w>icones</w>
@@ -65,6 +83,7 @@
       <w>informations</w>
       <w>initialiser</w>
       <w>intervalle</w>
+      <w>inventaire</w>
       <w>iterateur</w>
       <w>laboratoire</w>
       <w>laquelle</w>
@@ -77,6 +96,8 @@
       <w>metadonnees</w>
       <w>mettre</w>
       <w>moteur</w>
+      <w>méthode</w>
+      <w>necessaire</w>
       <w>noeud</w>
       <w>noeuds</w>
       <w>nombre</w>
@@ -90,15 +111,21 @@
       <w>projet</w>
       <w>propriété</w>
       <w>préciser</w>
+      <w>quantite</w>
       <w>quantité</w>
+      <w>quelle</w>
       <w>recherchee</w>
       <w>redimension</w>
       <w>rendre</w>
+      <w>respectait</w>
       <w>ressources</w>
       <w>retourne</w>
+      <w>retrait</w>
       <w>récupération</w>
+      <w>récupérer</w>
       <w>selectionnee</w>
       <w>selon</w>
+      <w>sont</w>
       <w>sorte</w>
       <w>strategie</w>
       <w>stratégie</w>
@@ -106,15 +133,22 @@
       <w>taille</w>
       <w>temporaires</w>
       <w>toutes</w>
+      <w>traite</w>
       <w>trouver</w>
       <w>trouvé</w>
       <w>usine</w>
+      <w>usines</w>
+      <w>utiliser</w>
       <w>valeur</w>
       <w>vente</w>
       <w>vitesse</w>
       <w>vérifier</w>
+      <w>échangé</w>
       <w>éléments</w>
+      <w>établit</w>
+      <w>était</w>
       <w>évènement</w>
+      <w>être</w>
     </words>
   </dictionary>
 </component>

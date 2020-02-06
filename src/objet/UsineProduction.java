@@ -3,20 +3,15 @@ package objet;
 import java.util.HashMap;
 import java.util.Map;
 
+// Usine-matière dans le fichier de configuration
 public class UsineProduction extends Noeud{
     public String cheminICone;
-    Map<Composante, Integer> composanteEntree;
     Composante composanteSortie;
     int dureeProduction;
 
-    public UsineProduction(int _id, Composante[] _composantesEntree, Composante _composanteSortie, int _dureeProduction, String _cheminIcone, int _posX, int _posY){
-        composanteEntree = new HashMap<>();
-
+    public UsineProduction(int _id, Composante _composanteSortie, int _dureeProduction, String _cheminIcone, int _posX, int _posY){
         id = _id;
         cheminICone = _cheminIcone;
-        for (Composante composante : _composantesEntree) {
-            composanteEntree.put(composante, 0);
-        }
         composanteSortie = _composanteSortie;
         dureeProduction = _dureeProduction;
         posX = _posX;
