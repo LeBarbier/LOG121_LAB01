@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UsineAssemblage extends Noeud {
-    public String cheminICone;
     private Composante composanteSortie;
     Map<Composante, Integer> composanteEntreeNecessaire; // ["NomComposante", NombreNecessaire] -> établit le nombre de composantes d'entrée nécessaire pour créer une autre composante
     Map<Composante, Integer> composanteEntreeInventaire; // ["NomComposante", NombreEnInventaire] -> Établit le nombre de composantes d'entrée actuellement dans l'inventaire de l'usine.

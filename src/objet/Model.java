@@ -48,7 +48,7 @@ public class Model {
 
     public static Noeud obtenirDonneeMetadata(String[] _tableDonneeSimulation) {
         //Récupération de l'ensemble des éléments nommées "USINE" du fichier de configuration
-        NodeList listeNodeUsine = doc.getElementsByTagName("usine");
+        NodeList listeNodeUsine = doc.getDocumentElement().getElementsByTagName("metadonnees").item(0).getChildNodes();
         String typeUsineRecherchee = _tableDonneeSimulation[0];
         String cheminIcone = "";
         String typeEntreposage = "";
@@ -60,81 +60,85 @@ public class Model {
             for (int i = 0; i < listeNodeUsine.getLength(); i++) {
                 Node nodeActuelle = listeNodeUsine.item(i); // Une balise USINE
                 NodeList enfantsNodeActuelle = nodeActuelle.getChildNodes();
-                String typeUsineActuelle = nodeActuelle.getAttributes().getNamedItem("type").getNodeValue();
 
-                if (typeUsineActuelle.equalsIgnoreCase("entrepot")) {
-                    for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
-                        Node enfantActuelle = enfantsNodeActuelle.item(j);
+                if (nodeActuelle.getAttributes() != null){
+                    String typeUsineActuelle = nodeActuelle.getAttributes().getNamedItem("type").getNodeValue();
 
-                        if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                            cheminIcone = "";
-                        } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
-                            limiteEntreposage = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("capacite").getNodeValue());
-                            typeEntreposage = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
-                        }
-                    }
-                    return new Entrepot(Integer.parseInt(_tableDonneeSimulation[1]),
-                            typeEntreposage,
-                            limiteEntreposage,
-                            cheminIcone,
-                            Integer.parseInt(_tableDonneeSimulation[2]),
-                            Integer.parseInt(_tableDonneeSimulation[3]));
+                    if (typeUsineRecherchee.equalsIgnoreCase("entrepot") || typeUsineRecherchee.equalsIgnoreCase("usine-matiere")) {
+                        if (typeUsineActuelle.equalsIgnoreCase(typeUsineRecherchee) && typeUsineActuelle.equalsIgnoreCase("entrepot")) {
+                            for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
+                                Node enfantActuelle = enfantsNodeActuelle.item(j);
 
-                } else if (typeUsineActuelle.equalsIgnoreCase("usine-matiere")) {
-                    intervalProduction = Integer.parseInt(listeNodeUsine.item(i).getLastChild().getPreviousSibling().getFirstChild().getNodeValue());
-                    Composante composanteSortie = new Composante("");
+                                if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
+                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
 
-                    for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
-                            Node enfantActuelle = enfantsNodeActuelle.item(j);
-
-                            if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                                cheminIcone = "";
-                            } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
-                                composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
-
-                            } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
-                                intervalProduction = Integer.parseInt(enfantActuelle.getFirstChild().getNodeValue());
-
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
+                                    limiteEntreposage = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("capacite").getNodeValue());
+                                    typeEntreposage = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
+                                }
                             }
+                            return new Entrepot(Integer.parseInt(_tableDonneeSimulation[1]),
+                                    typeEntreposage,
+                                    limiteEntreposage,
+                                    cheminIcone,
+                                    Integer.parseInt(_tableDonneeSimulation[2]),
+                                    Integer.parseInt(_tableDonneeSimulation[3]));
+
+                        } else if (typeUsineActuelle.equalsIgnoreCase(typeUsineRecherchee) && typeUsineActuelle.equalsIgnoreCase("usine-matiere")) {
+                            Composante composanteSortie = new Composante("");
+
+                            for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
+                                Node enfantActuelle = enfantsNodeActuelle.item(j);
+
+                                if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
+                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
+
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
+                                    composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
+
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
+                                    intervalProduction = Integer.parseInt(enfantActuelle.getFirstChild().getNodeValue());
+                                }
+                            }
+                            return new UsineProduction(Integer.parseInt(_tableDonneeSimulation[1]),
+                                    composanteSortie,
+                                    intervalProduction,
+                                    cheminIcone,
+                                    Integer.parseInt(_tableDonneeSimulation[2]),
+                                    Integer.parseInt(_tableDonneeSimulation[3]));
                         }
-                        return new UsineProduction(Integer.parseInt(_tableDonneeSimulation[1]),
-                                composanteSortie,
-                                intervalProduction,
-                                cheminIcone,
-                                Integer.parseInt(_tableDonneeSimulation[2]),
-                                Integer.parseInt(_tableDonneeSimulation[3]));
+                    } else { // Ici on traite tout les autres cas d'usine (Comme usine-assemblage)
+                        if (typeUsineActuelle.equalsIgnoreCase(typeUsineRecherchee)) {
+                            Map<Composante, Integer> mapComposanteEntree = new HashMap<>();
+                            Composante composanteSortie = new Composante("");
 
-                } else { // Ici on traite tout les autres cas d'usine (Comme usine-assemblage)
-                    Map<Composante, Integer> mapComposanteEntree = new HashMap<>();
-                    Composante composanteSortie = new Composante("");
+                            for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
+                                Node enfantActuelle = enfantsNodeActuelle.item(j);
 
-                    for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
-                        Node enfantActuelle = enfantsNodeActuelle.item(j);
+                                if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
+                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
 
-                        if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                            cheminIcone = "";
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
+                                    int quantite = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("quantite").getNodeValue());
+                                    String typeEntree = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
+                                    mapComposanteEntree.put(new Composante(typeEntree), quantite);
 
-                        } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
-                            int quantite = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("quantite").getNodeValue());
-                            String typeEntree = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
+                                    composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
 
-                            mapComposanteEntree.put(new Composante(typeEntree), quantite);
-
-                        } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
-                            composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
-
-                        } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
-                            intervalProduction = Integer.parseInt(enfantActuelle.getNodeValue());
-
+                                } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
+                                    intervalProduction = Integer.parseInt(enfantActuelle.getFirstChild().getNodeValue());
+                                }
+                            }
+                            return new UsineAssemblage(Integer.parseInt(_tableDonneeSimulation[1]),
+                                    mapComposanteEntree,
+                                    composanteSortie,
+                                    intervalProduction,
+                                    cheminIcone,
+                                    Integer.parseInt(_tableDonneeSimulation[2]),
+                                    Integer.parseInt(_tableDonneeSimulation[3]));
                         }
                     }
-                    return new UsineAssemblage(Integer.parseInt(_tableDonneeSimulation[1]),
-                            mapComposanteEntree,
-                            composanteSortie,
-                            intervalProduction,
-                            cheminIcone,
-                            Integer.parseInt(_tableDonneeSimulation[2]),
-                            Integer.parseInt(_tableDonneeSimulation[3]));
                 }
             }
         } catch (Exception e) {

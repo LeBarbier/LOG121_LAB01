@@ -34,6 +34,7 @@
       <w>changement</w>
       <w>chaîne</w>
       <w>chemin</w>
+      <w>chemins</w>
       <w>choix</w>
       <w>classe</w>
       <w>comme</w>
@@ -72,12 +73,14 @@
       <w>fixe</w>
       <w>forcement</w>
       <w>generique</w>
+      <w>graphique</w>
       <w>groupe</w>
       <w>gère</w>
       <w>générer</w>
       <w>gérant</w>
       <w>icone</w>
       <w>icones</w>
+      <w>illustré</w>
       <w>inclure</w>
       <w>indicateur</w>
       <w>informations</w>
@@ -91,6 +94,7 @@
       <w>limite</w>
       <w>liste</w>
       <w>matiere</w>
+      <w>matière</w>
       <w>matrice</w>
       <w>metadatas</w>
       <w>metadonnees</w>
@@ -107,6 +111,7 @@
       <w>obtenir</w>
       <w>panneau</w>
       <w>parcourir</w>
+      <w>partie</w>
       <w>principale</w>
       <w>projet</w>
       <w>propriété</w>
@@ -125,6 +130,7 @@
       <w>récupérer</w>
       <w>selectionnee</w>
       <w>selon</w>
+      <w>seul</w>
       <w>sont</w>
       <w>sorte</w>
       <w>strategie</w>

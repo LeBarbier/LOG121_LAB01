@@ -5,7 +5,6 @@ import java.util.Map;
 
 // Usine-matière dans le fichier de configuration
 public class UsineProduction extends Noeud{
-    public String cheminICone;
     Composante composanteSortie;
     int dureeProduction;
 

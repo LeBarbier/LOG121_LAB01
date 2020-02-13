@@ -3,7 +3,6 @@ package objet;
 import java.util.Map;
 
 public class Entrepot extends Noeud {
-    public String cheminICone;
     public String typeEntreposage;
     int limiteEntreposage;
     Map<Composante, Integer> composanteEntrepose;
