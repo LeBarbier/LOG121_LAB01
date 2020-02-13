@@ -5,9 +5,10 @@ import objet.Noeud;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,30 +21,36 @@ public class PanneauPrincipal extends JPanel {
 	private Point vitesse = new Point(1,1);
 	private int taille = 32;
 	String[][] listeImageNoeud;
+	HashMap<Integer, Noeud> listeNoeud;
+	ArrayList<Line2D> arrayListLigne;
 
 	public PanneauPrincipal() throws IOException, SAXException, ParserConfigurationException {
-		ArrayList<Noeud> listeNoeud = Model.obtenirConfigFichierSimulation();
+		listeNoeud = Model.obtenirConfigFichierSimulation();
+		arrayListLigne = new ArrayList<>();
 		listeImageNoeud = new String[listeNoeud.size()][3];
-
-		for (int i = 0; i < listeNoeud.size(); i++) {
-			Noeud noeudActuelle = listeNoeud.get(i);
-			listeImageNoeud[i] = new String[]{ noeudActuelle.cheminICone, Integer.toString(noeudActuelle.posX), Integer.toString(noeudActuelle.posY) };
-		}
 	}
 
 	@Override
 	public void paint(Graphics g) {
+		String[][] listeChemins = Model.obtenirDonneeSimulationChemin();
+
 		super.paint(g);
 		// Ajouter une icone au noeud désiré.
 		// On ajoute à la position le delta x et y de la vitesse
 		position.translate(vitesse.x, vitesse.y);
 		g.fillRect(position.x, position.y, taille, taille);
 
-		for (String[] infoNoeud : listeImageNoeud) {
-			ImageIcon imageIcon = new ImageIcon(infoNoeud[0]);
-			imageIcon.paintIcon(this, g, Integer.parseInt(infoNoeud[1]), Integer.parseInt(infoNoeud[2]));
-			// g.fillRect(point.x, point.y, taille, taille);
+		for (String[] stringChemin : listeChemins) {
+			// Ajouter 16 pixel à la position en X et Y, car on désire que la ligne soit au centre de l'icône.
+			g.drawLine(listeNoeud.get(Integer.parseInt(stringChemin[0])).posX+16,
+						listeNoeud.get(Integer.parseInt(stringChemin[0])).posY+16,
+						listeNoeud.get(Integer.parseInt(stringChemin[1])).posX+16,
+						listeNoeud.get(Integer.parseInt(stringChemin[1])).posY+16);
 		}
-	}
 
+		listeNoeud.forEach((id, noeud) -> {
+			ImageIcon imageIcon = new ImageIcon(noeud.cheminICone);
+			imageIcon.paintIcon(this, g, noeud.posX, noeud.posY);
+		});
+	}
 }

@@ -11,9 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Model {
     static DocumentBuilderFactory dbf;
@@ -21,17 +19,18 @@ public class Model {
     static Document doc;
     static String[][] matriceDonneeSimulation;
 
-    public static ArrayList<Noeud> obtenirConfigFichierSimulation() throws IOException, SAXException, ParserConfigurationException {
-        ArrayList<Noeud> listeNoeudSimulation = new ArrayList<>();
+    public static HashMap<Integer, Noeud> obtenirConfigFichierSimulation() throws IOException, SAXException, ParserConfigurationException {
+        HashMap<Integer, Noeud> listeNoeudSimulation = new HashMap<>();
         initialiserDocumentReader();
-        matriceDonneeSimulation = obtenirDonneeSimulation();
+        matriceDonneeSimulation = obtenirDonneeSimulationUsine();
 
         // Parcourir chacune des usines dans la balise simulation
         //  C'est cette balise qui détermine quelle composante sont dans la simulation
         //  et donc le nombre de chacun des noeuds que l'on doit générer.
         for (int i = 0; i < matriceDonneeSimulation.length; i++) {
             if (matriceDonneeSimulation[i][0] != null){
-                listeNoeudSimulation.add(obtenirDonneeMetadata(matriceDonneeSimulation[i]));
+                Noeud noeud = obtenirDonneeMetadata(matriceDonneeSimulation[i]);
+                listeNoeudSimulation.put(noeud.id, noeud);
             }
         }
 
@@ -148,7 +147,7 @@ public class Model {
         return null;
     }
 
-    public static String[][] obtenirDonneeSimulation(){
+    public static String[][] obtenirDonneeSimulationUsine(){
         //Récupération de la node "SIMULATION"
         NodeList listeNodeUsineSimulation = doc.getElementsByTagName("simulation").item(0).getChildNodes();
         String[][] matriceDonneeSimulation = new String[listeNodeUsineSimulation.getLength()][4];
@@ -168,5 +167,28 @@ public class Model {
         }
 
         return matriceDonneeSimulation;
+    }
+
+    public static String[][] obtenirDonneeSimulationChemin(){
+        int iterateurCheminNonNulle = 0;
+        //Récupération de la liste de node "CHEMIN"
+        NodeList listeNodeSimulationChemin = doc.getElementsByTagName("chemins").item(0).getChildNodes();
+        // Initialisation de la valeur à retourner
+        String[][] listeChemins = new String[doc.getElementsByTagName("chemin").getLength()][2]; //[{ "1.DE", "1.VERS" }, { "2.DE", "2.VERS" }]
+
+        for (int i = 0; i < listeNodeSimulationChemin.getLength(); i++) {
+            if (listeNodeSimulationChemin.item(i).getAttributes() != null
+                    && listeNodeSimulationChemin.item(i).getNodeName() == "chemin"){
+                String[] listeDonneeSimulation = new String[2]; // [de][vers]
+
+                listeDonneeSimulation[0] = listeNodeSimulationChemin.item(i).getAttributes().getNamedItem("de").getNodeValue();
+                listeDonneeSimulation[1] = listeNodeSimulationChemin.item(i).getAttributes().getNamedItem("vers").getNodeValue();
+
+                listeChemins[iterateurCheminNonNulle] = listeDonneeSimulation;
+                iterateurCheminNonNulle++;
+            }
+        }
+
+        return listeChemins;
     }
 }
