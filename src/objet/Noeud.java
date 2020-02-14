@@ -1,6 +1,9 @@
 package objet;
 
-public abstract class Noeud {
+import java.util.Observable;
+import java.util.Observer;
+
+public abstract class Noeud implements Observer {
     int id;
     public int posX;
     public int posY;
@@ -10,7 +13,7 @@ public abstract class Noeud {
         return 0;
     }
 
-    void update(){
+    public void update(int tempsPasse) {
 
     }
 }

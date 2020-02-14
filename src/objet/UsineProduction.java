@@ -2,6 +2,7 @@ package objet;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
 // Usine-matière dans le fichier de configuration
 public class UsineProduction extends Noeud{
@@ -15,5 +16,16 @@ public class UsineProduction extends Noeud{
         dureeProduction = _dureeProduction;
         posX = _posX;
         posY = _posY;
+    }
+
+    public void update(int _tourPassee) {
+        // Si vrai, c'est que le nombre de tour est divisible par la durée de production, donc un tour est passée
+        if ((_tourPassee % dureeProduction) == 0) {
+        }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

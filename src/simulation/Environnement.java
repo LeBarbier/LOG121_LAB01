@@ -1,67 +1,54 @@
 package simulation;
 
+import objet.TourObservable;
+
 import javax.swing.SwingWorker;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Observer;
 
-public class Environnement extends SwingWorker<Object, String> implements Observateur {
+// La classe environnement est un observable
+public class Environnement extends SwingWorker<Object, String> {
 	private boolean actif = true;
+	public int tourPassee;
 	private static final int DELAI = 100;
 	private ArrayList<Observer> collectionObservateur;
-	
+
+	public Environnement() {
+	}
+
 	@Override
 	protected Object doInBackground() throws Exception {
+		tourPassee = 0;
+		collectionObservateur = new ArrayList<>();
+
 		while(actif) {
 			Thread.sleep(DELAI);
-			/**
-			 * C'est ici que vous aurez à faire la gestion de la notion de tour.
-			 */
+			tourPassee++;
 			firePropertyChange("TEST", null, "Ceci est un test");
 		}
 		return null;
 	}
 
-	@Override
-	public void addObserver(Observer o) {
+	public void ajouterObservateur(Observer o) {
 		collectionObservateur.add(o);
 	}
 
-	@Override
-	public void deleteObserver(Observer o) {
+	public void supprimerObservateur(Observer o) {
 		collectionObservateur.remove(o);
 	}
 
-	@Override
-	public void notifyObservers() {
-
+	public void notifierObservateurs() {
+		for (Observer observateur : collectionObservateur) {
+			// observateur.update(tourPassee);
+		}
 	}
 
-	@Override
-	public void notifyObservers(Object arg) {
-
-	}
-
-	@Override // Permet de supprimer tout les observateurs actifs
-	public void deleteObservers() {
+	// Permet de supprimer tout les observateurs actifs
+	public void clearChanged() {
 		collectionObservateur.clear();
 	}
 
-	@Override
-	public void setChanged() {
-
-	}
-
-	@Override
-	public void clearChanged() {
-
-	}
-
-	@Override
-	public boolean hasChanged() {
-		return false;
-	}
-
-	@Override
 	public int countObservers() {
 		return collectionObservateur.size();
 	}

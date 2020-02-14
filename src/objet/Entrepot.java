@@ -1,6 +1,7 @@
 package objet;
 
 import java.util.Map;
+import java.util.Observable;
 
 public class Entrepot extends Noeud {
     public String typeEntreposage;
@@ -26,5 +27,10 @@ public class Entrepot extends Noeud {
             }
             limiteEntreposage++;
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
