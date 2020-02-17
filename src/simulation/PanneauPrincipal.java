@@ -61,11 +61,10 @@ public class PanneauPrincipal extends JPanel {
 			if (vitesse.x == 0 && vitesse.y == 0)
 				vitesse = obtenirVitesseTransport(position); // new Point(1,1);
 
-			ImageIcon imageIcon = new ImageIcon(composanteGraphique.composante.cheminICone);
-			imageIcon.paintIcon(this, g, position.x, position.y);
 
 			position.translate(vitesse.x, vitesse.y);
-			g.fillRect(position.x, position.y, taille, taille);
+			ImageIcon imageIcon = new ImageIcon(composanteGraphique.composante.cheminICone);
+			imageIcon.paintIcon(this, g, position.x, position.y);
 
 			listeComposanteOnWire.set(listeComposanteOnWire.indexOf(composanteGraphique), new ComposanteGraphique(composanteGraphique.composante, position, vitesse));
 		}));

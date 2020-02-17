@@ -13,12 +13,22 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Classe Model qui permet de gérer les données contenus dans le fichier de configuration XML
+ */
 public class Model {
     static DocumentBuilderFactory dbf;
     static DocumentBuilder db;
     static Document doc;
     static String[][] matriceDonneeSimulation;
 
+    /**
+     * Permet d'obtenir les informations du fichier de configuration XML de la simulation désirée
+     * @return Retourne la liste des éléments Noeuds à afficher dans la simulation graphique
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public static HashMap<Integer, Noeud> obtenirConfigFichierSimulation() throws IOException, SAXException, ParserConfigurationException {
         HashMap<Integer, Noeud> listeNoeudSimulation = new HashMap<>();
         initialiserDocumentReader();
@@ -37,6 +47,12 @@ public class Model {
          return listeNoeudSimulation;
     }
 
+    /**
+     * Initialisation du composant qui permet de parcourir le fichier de simulation XML
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
     public static void initialiserDocumentReader() throws ParserConfigurationException, IOException, SAXException {
         // Accès à la racine du document de configuration
         dbf = DocumentBuilderFactory.newInstance();
@@ -45,6 +61,11 @@ public class Model {
         doc.getDocumentElement().normalize();
     }
 
+    /**
+     * Permet d'obtenir les informations pour une usine depuis les MetaData du fichier de configuration XML
+     * @param _tableDonneeSimulation Informations que l'on désire dans la simulation graphique (Type d'usine, ID de l'usine, Position en X, Position en Y)
+     * @return Retourne un noeud générer à partir des MetaData du fichier de configuration XML
+     */
     public static Noeud obtenirDonneeMetadata(String[] _tableDonneeSimulation) {
         //Récupération de l'ensemble des éléments nommées "USINE" du fichier de configuration
         NodeList listeNodeUsine = doc.getDocumentElement().getElementsByTagName("metadonnees").item(0).getChildNodes();
@@ -149,6 +170,10 @@ public class Model {
         return null;
     }
 
+    /**
+     * Permet d'obtenir les informations pour une usine depuis la Simulation du fichier de configuration XML
+     * @return Retourne les informations d'une usine précise dans la simulation (Type d'usine, ID de l'usine, Position en X, Position en Y)
+     */
     public static String[][] obtenirDonneeSimulationUsine(){
         //Récupération de la node "SIMULATION"
         NodeList listeNodeUsineSimulation = doc.getElementsByTagName("simulation").item(0).getChildNodes();
@@ -171,6 +196,10 @@ public class Model {
         return matriceDonneeSimulation;
     }
 
+    /**
+     * Permet d'obtenir les information pour un chemin entre deux usines depuis la Simulation du fichier de configuration XML
+     * @return Retourne les informations d'un chemin entre deux usines précises dans la simulation (Id de l'usine DE, Id de l'usine VERS)
+     */
     public static String[][] obtenirDonneeSimulationChemin(){
         int iterateurCheminNonNulle = 0;
         //Récupération de la liste de node "CHEMIN"

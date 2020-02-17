@@ -1,12 +1,14 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Guillaume">
     <words>
+      <w>absolue</w>
       <w>accès</w>
       <w>actif</w>
       <w>actifs</w>
       <w>actuelle</w>
       <w>actuellement</w>
       <w>affichage</w>
+      <w>afficher</w>
       <w>affichés</w>
       <w>ailes</w>
       <w>ajout</w>
@@ -17,6 +19,7 @@
       <w>alors</w>
       <w>annuler</w>
       <w>appeler</w>
+      <w>appelé</w>
       <w>assez</w>
       <w>attribuer</w>
       <w>attributs</w>
@@ -26,6 +29,7 @@
       <w>avancement</w>
       <w>avec</w>
       <w>avion</w>
+      <w>avions</w>
       <w>balise</w>
       <w>bonne</w>
       <w>booléen</w>
@@ -45,16 +49,21 @@
       <w>choix</w>
       <w>classe</w>
       <w>comme</w>
+      <w>complète</w>
+      <w>comportement</w>
       <w>composant</w>
       <w>composante</w>
       <w>composantes</w>
+      <w>concevoir</w>
       <w>confirmer</w>
       <w>constructeur</w>
+      <w>contenus</w>
       <w>contient</w>
       <w>correctement</w>
       <w>créer</w>
       <w>delai</w>
       <w>deplacement</w>
+      <w>depuis</w>
       <w>dessiner</w>
       <w>deux</w>
       <w>différents</w>
@@ -62,12 +71,18 @@
       <w>doivent</w>
       <w>donc</w>
       <w>donnee</w>
+      <w>données</w>
       <w>duree</w>
       <w>durée</w>
       <w>début</w>
+      <w>déduit</w>
+      <w>définissant</w>
+      <w>définit</w>
       <w>dépendant</w>
+      <w>désigne</w>
       <w>désire</w>
       <w>désiré</w>
+      <w>désirée</w>
       <w>détermine</w>
       <w>empêcher</w>
       <w>enfant</w>
@@ -76,6 +91,8 @@
       <w>entre</w>
       <w>entreposage</w>
       <w>entrepose</w>
+      <w>entreposé</w>
+      <w>entreposée</w>
       <w>entrepot</w>
       <w>environnement</w>
       <w>etre</w>
@@ -91,6 +108,7 @@
       <w>forcement</w>
       <w>generique</w>
       <w>graphique</w>
+      <w>graphiquement</w>
       <w>groupe</w>
       <w>gère</w>
       <w>générer</w>
@@ -100,6 +118,7 @@
       <w>icone</w>
       <w>icones</w>
       <w>illustré</w>
+      <w>implémente</w>
       <w>inclure</w>
       <w>indicateur</w>
       <w>informations</w>
@@ -107,19 +126,23 @@
       <w>intervalle</w>
       <w>inventaire</w>
       <w>iterateur</w>
+      <w>jour</w>
       <w>laboratoire</w>
       <w>laquelle</w>
       <w>ligne</w>
       <w>limite</w>
       <w>liste</w>
+      <w>lorsque</w>
       <w>matiere</w>
       <w>matière</w>
       <w>matrice</w>
       <w>metadatas</w>
       <w>metadonnees</w>
       <w>mettre</w>
+      <w>mise</w>
       <w>moteur</w>
       <w>mouvement</w>
+      <w>métal</w>
       <w>méthode</w>
       <w>même</w>
       <w>necessaire</w>
@@ -127,28 +150,37 @@
       <w>noeuds</w>
       <w>nombre</w>
       <w>nommées</w>
+      <w>nouvelles</w>
       <w>nulle</w>
+      <w>numéro</w>
       <w>nécessaire</w>
       <w>nécessaires</w>
+      <w>objet</w>
       <w>observateur</w>
       <w>observateurs</w>
       <w>obtenir</w>
       <w>panneau</w>
       <w>parcourir</w>
       <w>partie</w>
+      <w>partir</w>
       <w>passee</w>
       <w>passée</w>
       <w>permet</w>
       <w>pièce</w>
+      <w>pièces</w>
       <w>plusieurs</w>
       <w>possede</w>
       <w>possède</w>
       <w>pouvoir</w>
+      <w>prend</w>
       <w>principale</w>
       <w>produire</w>
       <w>projet</w>
       <w>propriété</w>
+      <w>précise</w>
       <w>préciser</w>
+      <w>précises</w>
+      <w>prêt</w>
       <w>quantite</w>
       <w>quantité</w>
       <w>quelle</w>
@@ -169,12 +201,16 @@
       <w>savoir</w>
       <w>selectionnee</w>
       <w>selon</w>
+      <w>sera</w>
       <w>seul</w>
+      <w>simuler</w>
       <w>soit</w>
       <w>sont</w>
       <w>sorte</w>
+      <w>stocker</w>
       <w>strategie</w>
       <w>stratégie</w>
+      <w>supplémentaires</w>
       <w>supprimer</w>
       <w>sélectionné</w>
       <w>taille</w>
@@ -186,17 +222,21 @@
       <w>usine</w>
       <w>usines</w>
       <w>utiliser</w>
+      <w>utilisées</w>
       <w>valeur</w>
       <w>valeurs</w>
+      <w>vendre</w>
       <w>vente</w>
       <w>vers</w>
       <w>vitesse</w>
       <w>vrai</w>
       <w>vérifier</w>
       <w>échangé</w>
+      <w>élément</w>
       <w>éléments</w>
       <w>établit</w>
       <w>était</w>
+      <w>étend</w>
       <w>évènement</w>
       <w>être</w>
     </words>
