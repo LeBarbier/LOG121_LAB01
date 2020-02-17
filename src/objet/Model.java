@@ -93,7 +93,9 @@ public class Model {
                                     cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
 
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
+                                    
                                     composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
+
 
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
                                     intervalProduction = Integer.parseInt(enfantActuelle.getFirstChild().getNodeValue());
@@ -191,4 +193,5 @@ public class Model {
 
         return listeChemins;
     }
+
 }

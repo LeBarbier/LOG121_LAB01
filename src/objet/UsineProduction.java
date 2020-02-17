@@ -1,5 +1,8 @@
 package objet;
 
+import simulation.PanneauPrincipal;
+
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -18,14 +21,18 @@ public class UsineProduction extends Noeud{
         posY = _posY;
     }
 
-    public void update(int _tourPassee) {
+    @Override
+    public void update(Observable o, Object arg) {
         // Si vrai, c'est que le nombre de tour est divisible par la durée de production, donc un tour est passée
-        if ((_tourPassee % dureeProduction) == 0) {
+        if (((Integer.parseInt(arg.toString()) % dureeProduction) == 0) && (Integer.parseInt(arg.toString()) != 0)) {
+            assemblerPiece();
         }
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-
+    /**
+     * Permet d'assembler une pièce de l'usine en retirant de l'inventaire les composantes nécessaires
+     */
+    private void assemblerPiece(){
+        PanneauPrincipal.mettreComposanteOnWire(composanteSortie, new Point[]{ new Point(posX, posY), new Point() });
     }
 }
