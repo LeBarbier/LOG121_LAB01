@@ -8,12 +8,21 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Classe qui définit un objet sur le chemin, entre deux noeuds
+ */
 public class ComposanteEnChemin {
     Composante composante;
     Point positionDepart;
     Point positionArrive;
     Point vitesse;
 
+    /**
+     * Constructeur d'un objet ComposanteEnChemin
+     * @param _composante Objet Composante qui est en déplacement
+     * @param _positionDepart Position de départ de la composante en déplacement
+     * @param _vitesse Vitesse et direction de la composante en déplacement
+     */
     public ComposanteEnChemin(Composante _composante, Point _positionDepart, Point _vitesse){
         composante = _composante;
         positionDepart = _positionDepart;
@@ -21,13 +30,19 @@ public class ComposanteEnChemin {
         vitesse = _vitesse;
     }
 
+    /**
+     * Méthode pour obtenir la position d'arrivé de la composante en chemin
+     * @return Retourne un point de la position d'arrivée
+     */
     private Point obtenirPositionArrive(){
         Noeud noeudArrive = obtenirNoeudArrive();
-
-
         return new Point(noeudArrive.posX, noeudArrive.posY);
     }
 
+    /**
+     * Méthode pour obtenir le noeud d'arriver selon la position de départ et le chemin emprunter
+     * @return Retourne le noeud d'arriver de la composante en chemin
+     */
     public Noeud obtenirNoeudArrive(){
         Noeud noeudArrive = null;
         String[][] listeChemins = Model.obtenirDonneeSimulationChemin();
