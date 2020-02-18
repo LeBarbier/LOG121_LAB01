@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class UsineAssemblage extends Noeud {
     private Composante composanteSortie;
     Map<Composante, Integer> composanteEntreeNecessaire; // ["NomComposante", NombreNecessaire] -> Établit le nombre de composantes d'entrée nécessaire pour créer une autre composante
-    Map<Composante, Integer> composanteEntreeInventaire; // ["NomComposante", NombreEnInventaire] -> Établit le nombre de composantes d'entrée actuellement dans l'inventaire de l'usine.
     private int dureeProduction;
 
     /**

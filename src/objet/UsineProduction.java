@@ -25,6 +25,7 @@ public class UsineProduction extends Noeud{
      * @param _posY Position en Y dans la simulation graphique
      */
     public UsineProduction(int _id, Composante _composanteSortie, int _dureeProduction, String _cheminIcone, int _posX, int _posY){
+        composanteEntreeInventaire = null;
         id = _id;
         cheminICone = _cheminIcone;
         composanteSortie = _composanteSortie;
@@ -51,5 +52,9 @@ public class UsineProduction extends Noeud{
      */
     private void assemblerPiece(){
         PanneauPrincipal.mettreComposanteOnWire(composanteSortie, new Point[]{ new Point(posX, posY), new Point() });
+    }
+
+    @Override
+    public void ajouterComposanteEnInventaire(Composante _composanteAjouter){
     }
 }

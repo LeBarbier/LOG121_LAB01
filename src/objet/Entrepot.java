@@ -9,7 +9,6 @@ import java.util.Observable;
 public class Entrepot extends Noeud {
     public String typeEntreposage;
     int limiteEntreposage;
-    Map<Composante, Integer> composanteEntrepose;
     StrategieVente strategieVente; // Va etre initialiser selon either venteAleatoire ou venteIntervalleFixe
 
     /**
@@ -32,14 +31,15 @@ public class Entrepot extends Noeud {
 
     /**
      * Permet d'ajouter une composante dans l'entrepot
-     * @param _composante Composante qui sera entreposée dans l'entrepot
+     * @param _composanteAjouter Composante qui sera entreposée dans l'entrepot
      */
-    public void ajouterEntreposage(Composante _composante){
-        if ((composanteEntrepose.size() < limiteEntreposage) && (typeEntreposage == _composante.nom)){
-            if (!composanteEntrepose.containsKey(_composante)){
-                composanteEntrepose.put(_composante, 1);
+    @Override
+    public void ajouterComposanteEnInventaire(Composante _composanteAjouter){
+        if ((composanteEntreeInventaire.size() < limiteEntreposage) && (typeEntreposage == _composanteAjouter.nom)){
+            if (!composanteEntreeInventaire.containsKey(_composanteAjouter)){
+                composanteEntreeInventaire.put(_composanteAjouter, 1);
             } else {
-                composanteEntrepose.put(_composante, composanteEntrepose.get(_composante) + 1);
+                composanteEntreeInventaire.put(_composanteAjouter, composanteEntreeInventaire.get(_composanteAjouter) + 1);
             }
             limiteEntreposage++;
         }

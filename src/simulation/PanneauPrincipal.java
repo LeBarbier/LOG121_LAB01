@@ -1,8 +1,6 @@
 package simulation;
 
-import objet.Composante;
-import objet.Model;
-import objet.Noeud;
+import objet.*;
 import org.xml.sax.SAXException;
 
 import java.awt.*;
@@ -10,9 +8,6 @@ import java.awt.geom.Line2D;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Observable;
-import java.util.concurrent.atomic.AtomicReference;
 
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,7 +18,8 @@ public class PanneauPrincipal extends JPanel {
 	private int taille = 32;
 	String[][] listeImageNoeud;
 	HashMap<Integer, Noeud> listeNoeud;
-	public static ArrayList<ComposanteGraphique> listeComposanteOnWire; // [ Composante, { pointPosition, pointVitesse } ]
+	public static ArrayList<ComposanteEnChemin> listeComposanteOnWire; // [ Composante, { pointPosition, pointVitesse } ]
+	public static ArrayList<ComposanteEnChemin> listeComposanteOnWireARetirer; // [ Composante, { pointPosition, pointVitesse } ]
 	ArrayList<Line2D> arrayListLigne;
 	String[][] listeChemins;
 
@@ -32,6 +28,7 @@ public class PanneauPrincipal extends JPanel {
 		arrayListLigne = new ArrayList<>();
 		listeImageNoeud = new String[listeNoeud.size()][3];
 		listeComposanteOnWire = new ArrayList<>();
+		listeComposanteOnWireARetirer = new ArrayList<>();
 		listeChemins = Model.obtenirDonneeSimulationChemin();
 	}
 
@@ -53,69 +50,81 @@ public class PanneauPrincipal extends JPanel {
 			imageIcon.paintIcon(this, g, noeud.posX, noeud.posY);
 		});
 
-		listeComposanteOnWire.forEach((composanteGraphique -> {
+		listeComposanteOnWire.forEach((composanteEnChemin -> {
 			// Variables temporaires de la demonstration:
-			Point position = composanteGraphique.position;  // new Point(0,0);
-			Point vitesse = composanteGraphique.vitesse;
+			Point positionDepart = composanteEnChemin.positionDepart;  // new Point(0,0);
+			Point vitesse = composanteEnChemin.vitesse;
 
 			if (vitesse.x == 0 && vitesse.y == 0)
-				vitesse = obtenirVitesseTransport(position); // new Point(1,1);
+				vitesse = obtenirVitesseTransport(composanteEnChemin); // new Point(1,1);
 
+			// Vérifier si la composante à atteint sa destination
+			if (isComposanteAtDestination(composanteEnChemin)){
+				listeComposanteOnWireARetirer.add(composanteEnChemin);
+				return;
+			}
 
-			position.translate(vitesse.x, vitesse.y);
-			ImageIcon imageIcon = new ImageIcon(composanteGraphique.composante.cheminICone);
-			imageIcon.paintIcon(this, g, position.x, position.y);
+			positionDepart.translate(vitesse.x, vitesse.y);
+			ImageIcon imageIcon = new ImageIcon(composanteEnChemin.composante.cheminICone);
+			imageIcon.paintIcon(this, g, positionDepart.x, positionDepart.y);
 
-			listeComposanteOnWire.set(listeComposanteOnWire.indexOf(composanteGraphique), new ComposanteGraphique(composanteGraphique.composante, position, vitesse));
+			composanteEnChemin.positionDepart = positionDepart;
+
+			listeComposanteOnWire.set(listeComposanteOnWire.indexOf(composanteEnChemin), composanteEnChemin);
 		}));
+
+		// Ici on retirer les composantes arriver à destination
+		listeComposanteOnWireARetirer.forEach(composanteEnChemin -> {
+			retirerComposanteOnWire(composanteEnChemin);
+		});
 	}
 
 	public static void mettreComposanteOnWire(Composante _composante, Point[] _listePositionVitesse){
 		if (listeComposanteOnWire != null){
-			listeComposanteOnWire.add(new ComposanteGraphique(_composante, _listePositionVitesse[0], _listePositionVitesse[1]));
+			listeComposanteOnWire.add(new ComposanteEnChemin(_composante, _listePositionVitesse[0], _listePositionVitesse[1]));
 		}
 	}
 
-	private Point obtenirVitesseTransport(Point _positionDepart){
-		Point vitesseTransport;
-		AtomicReference<Noeud> noeudAtomic = new AtomicReference<>();
-		Noeud noeudArrive = null;
-		Noeud noeudDepart = null;
+	private static Point obtenirVitesseTransport(ComposanteEnChemin _composanteEnChemin){
 		int vitesseDeplacementX = 0;
 		int vitesseDeplacementY = 0;
 
-		listeNoeud.forEach((id, noeud) -> {
-			if (noeud.posX == _positionDepart.x && noeud.posY == _positionDepart.y){
-				noeudAtomic.set(noeud);
-			}
-		});
-
-		for (String[] chemin : listeChemins) {
-			if (Integer.parseInt(chemin[0]) == noeudAtomic.get().id){
-				noeudDepart = listeNoeud.get(Integer.parseInt(chemin[0]));
-				noeudArrive = listeNoeud.get(Integer.parseInt(chemin[1]));
-			}
-		}
-
 		// Ici on calcule la vitesse de l'objet
-		if (noeudDepart != null && noeudArrive != null) {
-			if (noeudDepart.posX == noeudArrive.posX)
+		if (_composanteEnChemin.positionDepart != null && _composanteEnChemin.positionArrive != null) {
+			if (_composanteEnChemin.positionDepart.x == _composanteEnChemin.positionArrive.x)
 				vitesseDeplacementX = 0;
-			else if (noeudDepart.posX > noeudArrive.posX)
+			else if (_composanteEnChemin.positionDepart.x > _composanteEnChemin.positionArrive.x)
 				vitesseDeplacementX = -1;
-			else if (noeudDepart.posX < noeudArrive.posX)
+			else if (_composanteEnChemin.positionDepart.x < _composanteEnChemin.positionArrive.x)
 				vitesseDeplacementX = 1;
 
-			if (noeudDepart.posY == noeudArrive.posY)
+			if (_composanteEnChemin.positionDepart.y == _composanteEnChemin.positionArrive.y)
 				vitesseDeplacementY = 0;
-			else if (noeudDepart.posY > noeudArrive.posY)
+			else if (_composanteEnChemin.positionDepart.y > _composanteEnChemin.positionArrive.y)
 				vitesseDeplacementY = -1;
-			else if (noeudDepart.posY < noeudArrive.posY)
+			else if (_composanteEnChemin.positionDepart.y < _composanteEnChemin.positionArrive.y)
 				vitesseDeplacementY = 1;
 
 		}
-		vitesseTransport = new Point(vitesseDeplacementX, vitesseDeplacementY);
 
-		return vitesseTransport;
+		return new Point(vitesseDeplacementX, vitesseDeplacementY);
+	}
+
+	private static boolean isComposanteAtDestination(ComposanteEnChemin _composanteEnChemin){
+		if (_composanteEnChemin.positionDepart.x == _composanteEnChemin.positionArrive.x
+				&& _composanteEnChemin.positionDepart.y == _composanteEnChemin.positionArrive.y){
+			return true;
+		}
+		return  false;
+	}
+
+	private void retirerComposanteOnWire(ComposanteEnChemin _composanteEnChemin){
+		if (listeComposanteOnWire != null){
+			Noeud noeudArrive = listeNoeud.get(_composanteEnChemin.obtenirNoeudArrive().id);
+
+			noeudArrive.ajouterComposanteEnInventaire(new Composante(_composanteEnChemin.composante.nom));
+
+			listeComposanteOnWire.remove(_composanteEnChemin);
+		}
 	}
 }
