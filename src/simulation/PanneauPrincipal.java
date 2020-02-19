@@ -52,7 +52,7 @@ public class PanneauPrincipal extends JPanel {
 
 		listeComposanteOnWire.forEach((composanteEnChemin -> {
 			// Variables temporaires de la demonstration:
-			Point positionDepart = composanteEnChemin.positionDepart;  // new Point(0,0);
+			Point posActuelleModifiee = new Point(composanteEnChemin.positionActuelle.x, composanteEnChemin.positionActuelle.y);  // new Point(0,0);
 			Point vitesse = composanteEnChemin.vitesse;
 
 			if (vitesse.x == 0 && vitesse.y == 0)
@@ -64,11 +64,11 @@ public class PanneauPrincipal extends JPanel {
 				return;
 			}
 
-			positionDepart.translate(vitesse.x, vitesse.y);
+			posActuelleModifiee.translate(vitesse.x, vitesse.y);
 			ImageIcon imageIcon = new ImageIcon(composanteEnChemin.composante.cheminICone);
-			imageIcon.paintIcon(this, g, positionDepart.x, positionDepart.y);
+			imageIcon.paintIcon(this, g, posActuelleModifiee.x, posActuelleModifiee.y);
 
-			composanteEnChemin.positionDepart = positionDepart;
+			composanteEnChemin.positionActuelle = posActuelleModifiee;
 
 			listeComposanteOnWire.set(listeComposanteOnWire.indexOf(composanteEnChemin), composanteEnChemin);
 		}));
@@ -77,6 +77,7 @@ public class PanneauPrincipal extends JPanel {
 		listeComposanteOnWireARetirer.forEach(composanteEnChemin -> {
 			retirerComposanteOnWire(composanteEnChemin);
 		});
+		listeComposanteOnWireARetirer.clear();
 	}
 
 	public static void mettreComposanteOnWire(Composante _composante, Point[] _listePositionVitesse){
@@ -90,19 +91,19 @@ public class PanneauPrincipal extends JPanel {
 		int vitesseDeplacementY = 0;
 
 		// Ici on calcule la vitesse de l'objet
-		if (_composanteEnChemin.positionDepart != null && _composanteEnChemin.positionArrive != null) {
-			if (_composanteEnChemin.positionDepart.x == _composanteEnChemin.positionArrive.x)
+		if (_composanteEnChemin.positionActuelle != null && _composanteEnChemin.noeudArrive != null) {
+			if (_composanteEnChemin.positionActuelle.x == _composanteEnChemin.noeudArrive.posX)
 				vitesseDeplacementX = 0;
-			else if (_composanteEnChemin.positionDepart.x > _composanteEnChemin.positionArrive.x)
+			else if (_composanteEnChemin.positionActuelle.x > _composanteEnChemin.noeudArrive.posX)
 				vitesseDeplacementX = -1;
-			else if (_composanteEnChemin.positionDepart.x < _composanteEnChemin.positionArrive.x)
+			else if (_composanteEnChemin.positionActuelle.x < _composanteEnChemin.noeudArrive.posX)
 				vitesseDeplacementX = 1;
 
-			if (_composanteEnChemin.positionDepart.y == _composanteEnChemin.positionArrive.y)
+			if (_composanteEnChemin.positionActuelle.y == _composanteEnChemin.noeudArrive.posY)
 				vitesseDeplacementY = 0;
-			else if (_composanteEnChemin.positionDepart.y > _composanteEnChemin.positionArrive.y)
+			else if (_composanteEnChemin.positionActuelle.y > _composanteEnChemin.noeudArrive.posY)
 				vitesseDeplacementY = -1;
-			else if (_composanteEnChemin.positionDepart.y < _composanteEnChemin.positionArrive.y)
+			else if (_composanteEnChemin.positionActuelle.y < _composanteEnChemin.noeudArrive.posY)
 				vitesseDeplacementY = 1;
 
 		}
@@ -111,8 +112,8 @@ public class PanneauPrincipal extends JPanel {
 	}
 
 	private static boolean isComposanteAtDestination(ComposanteEnChemin _composanteEnChemin){
-		if (_composanteEnChemin.positionDepart.x == _composanteEnChemin.positionArrive.x
-				&& _composanteEnChemin.positionDepart.y == _composanteEnChemin.positionArrive.y){
+		if (_composanteEnChemin.positionActuelle.x == _composanteEnChemin.noeudArrive.posX
+				&& _composanteEnChemin.positionActuelle.y == _composanteEnChemin.noeudArrive.posY){
 			return true;
 		}
 		return  false;
@@ -120,7 +121,7 @@ public class PanneauPrincipal extends JPanel {
 
 	private void retirerComposanteOnWire(ComposanteEnChemin _composanteEnChemin){
 		if (listeComposanteOnWire != null){
-			Noeud noeudArrive = listeNoeud.get(_composanteEnChemin.obtenirNoeudArrive().id);
+			Noeud noeudArrive = listeNoeud.get(_composanteEnChemin.noeudArrive.id);
 
 			noeudArrive.ajouterComposanteEnInventaire(new Composante(_composanteEnChemin.composante.nom));
 

@@ -36,10 +36,10 @@ public class Entrepot extends Noeud {
     @Override
     public void ajouterComposanteEnInventaire(Composante _composanteAjouter){
         if ((composanteEntreeInventaire.size() < limiteEntreposage) && (typeEntreposage == _composanteAjouter.nom)){
-            if (!composanteEntreeInventaire.containsKey(_composanteAjouter)){
-                composanteEntreeInventaire.put(_composanteAjouter, 1);
+            if (!composanteEntreeInventaire.containsKey(_composanteAjouter.nom)){
+                composanteEntreeInventaire.put(_composanteAjouter.nom, 1);
             } else {
-                composanteEntreeInventaire.put(_composanteAjouter, composanteEntreeInventaire.get(_composanteAjouter) + 1);
+                composanteEntreeInventaire.put(_composanteAjouter.nom, composanteEntreeInventaire.get(_composanteAjouter) + 1);
             }
             limiteEntreposage++;
         }

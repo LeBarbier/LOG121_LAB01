@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class UsineAssemblage extends Noeud {
     private Composante composanteSortie;
-    Map<Composante, Integer> composanteEntreeNecessaire; // ["NomComposante", NombreNecessaire] -> Établit le nombre de composantes d'entrée nécessaire pour créer une autre composante
+    Map<String, Integer> composanteEntreeNecessaire; // ["NomComposante", NombreNecessaire] -> Établit le nombre de composantes d'entrée nécessaire pour créer une autre composante
     private int dureeProduction;
 
     /**
@@ -26,7 +26,7 @@ public class UsineAssemblage extends Noeud {
      * @param _posX Position en X dans la simulation graphique
      * @param _posY Position en Y dans la simulation graphique
      */
-    public UsineAssemblage(int _id, Map<Composante, Integer> _composanteEntreeNecessaire, Composante _composanteSortie, int _dureeProduction, String _cheminIcone, int _posX, int _posY){
+    public UsineAssemblage(int _id, Map<String, Integer> _composanteEntreeNecessaire, Composante _composanteSortie, int _dureeProduction, String _cheminIcone, int _posX, int _posY){
         composanteEntreeNecessaire = new HashMap<>();
         composanteEntreeInventaire = new HashMap<>();
 
@@ -72,9 +72,9 @@ public class UsineAssemblage extends Noeud {
     private boolean possedePieceNecessaire(){
         AtomicBoolean valeurRetournee = new AtomicBoolean(false);
 
-        composanteEntreeInventaire.forEach((nomComposante, nombreEnInventaire) -> {
-            if (composanteEntreeNecessaire.containsKey(nomComposante)) {
-                if (composanteEntreeNecessaire.get(nomComposante) == nombreEnInventaire)
+        composanteEntreeNecessaire.forEach((nomComposante, nombreNecessaire) -> {
+            if (composanteEntreeInventaire.containsKey(nomComposante)) {
+                if (composanteEntreeInventaire.get(nomComposante) >= nombreNecessaire)
                 {
                     valeurRetournee.set(true);
                 } else { valeurRetournee.set(false); }

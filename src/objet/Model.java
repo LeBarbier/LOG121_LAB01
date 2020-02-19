@@ -131,7 +131,7 @@ public class Model {
                         }
                     } else { // Ici on traite tout les autres cas d'usine (Comme usine-assemblage)
                         if (typeUsineActuelle.equalsIgnoreCase(typeUsineRecherchee)) {
-                            Map<Composante, Integer> mapComposanteEntree = new HashMap<>();
+                            Map<String, Integer> mapComposanteEntree = new HashMap<>();
                             Composante composanteSortie = new Composante("");
 
                             for (int j = 0; j < enfantsNodeActuelle.getLength(); j++) {
@@ -143,7 +143,7 @@ public class Model {
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
                                     int quantite = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("quantite").getNodeValue());
                                     String typeEntree = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
-                                    mapComposanteEntree.put(new Composante(typeEntree), quantite);
+                                    mapComposanteEntree.put(typeEntree, quantite);
 
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
                                     composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());

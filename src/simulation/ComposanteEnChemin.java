@@ -13,8 +13,9 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class ComposanteEnChemin {
     Composante composante;
-    Point positionDepart;
-    Point positionArrive;
+    Noeud noeudDepart;
+    Noeud noeudArrive;
+    Point positionActuelle;
     Point vitesse;
 
     /**
@@ -24,42 +25,28 @@ public class ComposanteEnChemin {
      * @param _vitesse Vitesse et direction de la composante en déplacement
      */
     public ComposanteEnChemin(Composante _composante, Point _positionDepart, Point _vitesse){
+        initNoeudDepartArrive(_positionDepart);
         composante = _composante;
-        positionDepart = _positionDepart;
-        positionArrive = obtenirPositionArrive();
         vitesse = _vitesse;
+        positionActuelle = _positionDepart;
     }
 
-    /**
-     * Méthode pour obtenir la position d'arrivé de la composante en chemin
-     * @return Retourne un point de la position d'arrivée
-     */
-    private Point obtenirPositionArrive(){
-        Noeud noeudArrive = obtenirNoeudArrive();
-        return new Point(noeudArrive.posX, noeudArrive.posY);
-    }
-
-    /**
-     * Méthode pour obtenir le noeud d'arriver selon la position de départ et le chemin emprunter
-     * @return Retourne le noeud d'arriver de la composante en chemin
-     */
-    public Noeud obtenirNoeudArrive(){
-        Noeud noeudArrive = null;
-        String[][] listeChemins = Model.obtenirDonneeSimulationChemin();
+    private void initNoeudDepartArrive(Point _posDepart){
         HashMap<Integer, Noeud> listeNoeud = Simulation.getListeNoeudSimulation();
         AtomicReference<Noeud> noeudAtomic = new AtomicReference<>();
+        String[][] listeChemins = Model.obtenirDonneeSimulationChemin();
+
         listeNoeud.forEach((id, noeud) -> {
-            if (noeud.posX == positionDepart.x && noeud.posY == positionDepart.y){
+            if (noeud.posX == _posDepart.x && noeud.posY == _posDepart.y){
                 noeudAtomic.set(noeud);
             }
         });
-        Noeud noeudTrouver = noeudAtomic.get();
+        noeudDepart = noeudAtomic.get();
 
         for (String[] chemin : listeChemins) {
-            if (Integer.parseInt(chemin[0]) == noeudTrouver.id){
+            if (Integer.parseInt(chemin[0]) == noeudDepart.id){
                 noeudArrive = listeNoeud.get(Integer.parseInt(chemin[1]));
             }
         }
-        return noeudArrive;
     }
 }
