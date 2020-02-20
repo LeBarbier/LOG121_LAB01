@@ -31,6 +31,10 @@ public class ComposanteEnChemin {
         positionActuelle = _positionDepart;
     }
 
+    /**
+     * Méthode qui permet d'initialiser le noeud de départ ainsi que le noeud d'arrivé
+     * @param _posDepart La position de départ du composante en chemin
+     */
     private void initNoeudDepartArrive(Point _posDepart){
         HashMap<Integer, Noeud> listeNoeud = Simulation.getListeNoeudSimulation();
         AtomicReference<Noeud> noeudAtomic = new AtomicReference<>();

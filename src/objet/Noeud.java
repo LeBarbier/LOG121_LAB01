@@ -16,9 +16,10 @@ public abstract class Noeud implements Observer {
     protected String[] listeCheminIcone;
     protected int tempsConstruction;
 
-    int evaluerIndicateur(){
-        return 0;
-    }
+    /**
+     * Méthode qui déclare, de base, l'ajout d'un item à l'inventaire du noeud
+     * @param _composanteAjouter Composante que l'on désire ajouter à l'inventaire
+     */
     public void ajouterComposanteEnInventaire(Composante _composanteAjouter){
         if (composanteEntreeInventaire.containsKey(_composanteAjouter.nom))
             composanteEntreeInventaire.put(_composanteAjouter.nom, composanteEntreeInventaire.get(_composanteAjouter.nom) + 1);

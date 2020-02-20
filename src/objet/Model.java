@@ -232,6 +232,11 @@ public class Model {
         return listeChemins;
     }
 
+    /**
+     * Méthode qui permet d'obtenir la liste des chemins pour obtenir la liste des icones
+     * @param _node Node actuelle sur laquelle on cherche le chemin des icônes
+     * @return Retourne les listes de tout les icônes désirées, soit 4 chemins
+     */
     private static String[] obtenirListePathsIcones(Node _node){
         int iterateurPathIcone = 0;
         NodeList listeNodePathIcone = _node.getChildNodes();

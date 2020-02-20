@@ -4,6 +4,9 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+/**
+ * Fenêtre de stratégie pour la vente
+ */
 public class FenetreStrategie extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -11,6 +14,9 @@ public class FenetreStrategie extends JFrame {
 	private static final Dimension DIMENSION = new Dimension(250, 150);
 	private PanneauStrategie panneauStrategie = new PanneauStrategie();
 
+	/**
+	 * Initialisation de la fenêtre de saisie de type de vente
+	 */
 	public FenetreStrategie() {
 		add(panneauStrategie);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

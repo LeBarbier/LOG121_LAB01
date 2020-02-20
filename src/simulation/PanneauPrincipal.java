@@ -12,6 +12,9 @@ import java.util.HashMap;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 
+/**
+ * Panneau principale de l'application
+ */
 public class PanneauPrincipal extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +26,12 @@ public class PanneauPrincipal extends JPanel {
 	ArrayList<Line2D> arrayListLigne;
 	String[][] listeChemins;
 
+	/**
+	 * Initialisation du panneau principale
+	 * @throws IOException
+	 * @throws SAXException
+	 * @throws ParserConfigurationException
+	 */
 	public PanneauPrincipal() throws IOException, SAXException, ParserConfigurationException {
 		listeNoeud = Simulation.getListeNoeudSimulation();
 		arrayListLigne = new ArrayList<>();
@@ -32,6 +41,10 @@ public class PanneauPrincipal extends JPanel {
 		listeChemins = Model.obtenirDonneeSimulationChemin();
 	}
 
+	/**
+	 * Création de l'affichage graphique de l'application
+	 * @param g
+	 */
 	@Override
 	public void paint(Graphics g) {
 
@@ -86,6 +99,11 @@ public class PanneauPrincipal extends JPanel {
 		}
 	}
 
+	/**
+	 * Permet d'obtenir la vitesse de transport d'une composante en chemin
+	 * @param _composanteEnChemin Composante dont on veut la vitesse
+	 * @return Retourne la vitesse de la composante en chemin
+	 */
 	private static Point obtenirVitesseTransport(ComposanteEnChemin _composanteEnChemin){
 		int vitesseDeplacementX = 0;
 		int vitesseDeplacementY = 0;
@@ -111,6 +129,11 @@ public class PanneauPrincipal extends JPanel {
 		return new Point(vitesseDeplacementX, vitesseDeplacementY);
 	}
 
+	/**
+	 * Permet de savoir si la composante en chemin est rendu à destination
+	 * @param _composanteEnChemin
+	 * @return
+	 */
 	private static boolean isComposanteAtDestination(ComposanteEnChemin _composanteEnChemin){
 		if (_composanteEnChemin.positionActuelle.x == _composanteEnChemin.noeudArrive.posX
 				&& _composanteEnChemin.positionActuelle.y == _composanteEnChemin.noeudArrive.posY){
@@ -119,6 +142,10 @@ public class PanneauPrincipal extends JPanel {
 		return  false;
 	}
 
+	/**
+	 * Permet de retirer toutes les composantes qui sont rendu à destination
+	 * @param _composanteEnChemin Composante que l'on désire retirer de sur le chemin
+	 */
 	private void retirerComposanteOnWire(ComposanteEnChemin _composanteEnChemin){
 		if (listeComposanteOnWire != null){
 			Noeud noeudArrive = listeNoeud.get(_composanteEnChemin.noeudArrive.id);

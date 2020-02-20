@@ -68,6 +68,10 @@ public class UsineProduction extends Noeud{
         PanneauPrincipal.mettreComposanteOnWire(composanteSortie, new Point[]{ new Point(posX, posY), new Point() });
     }
 
+    /**
+     * Ici on fait un Override, car une usine de production ne possède pas d'inventaire
+     * @param _composanteAjouter Composante que l'on désire ajouter à l'inventaire
+     */
     @Override
     public void ajouterComposanteEnInventaire(Composante _composanteAjouter){
     }

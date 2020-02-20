@@ -21,7 +21,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	private static final Dimension DIMENSION = new Dimension(700, 700);
 
 	/**
-	 *
+	 * Initialisation de la fenetre principale de l'application
 	 */
 	public FenetrePrincipale() throws ParserConfigurationException, SAXException, IOException {
 		PanneauPrincipal panneauPrincipal = new PanneauPrincipal();
@@ -39,7 +39,7 @@ public class FenetrePrincipale extends JFrame implements PropertyChangeListener 
 	}
 
 	/**
-	 *
+	 * Écoute pour savoir si la propriété TEST à changer et ainsi savoir qu'un tour à passer et qu'on doit rafraichir les éléments graphique
 	 * @param evt Évènement qui a entrainé le changement de la propriété
 	 */
 	@Override
