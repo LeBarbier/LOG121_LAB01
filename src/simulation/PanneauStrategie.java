@@ -1,6 +1,6 @@
 package simulation;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 
@@ -23,13 +23,24 @@ public class PanneauStrategie extends JPanel {
 	*/
 	public PanneauStrategie() {
 		ButtonGroup groupeBoutons = new ButtonGroup();
-		JRadioButton strategie1 = new JRadioButton("Stratégie 1");
-		JRadioButton strategie2 = new JRadioButton("Stratégie 2");
+		JRadioButton strategieAleatoire = new JRadioButton("Vente aléatoire");
+		JRadioButton strategieIntervalle = new JRadioButton("Vente à intervalle fixe");
 		JButton boutonConfirmer = new JButton("Confirmer");
 
+		if (Horloge.isVenteAleatoire()){
+			strategieAleatoire.setSelected(true);
+			strategieIntervalle.setSelected(false);
+		} else {
+			strategieAleatoire.setSelected(false);
+			strategieIntervalle.setSelected(true);
+		}
+
 		boutonConfirmer.addActionListener((ActionEvent e) -> {
-			// TODO - Appeler la bonne stratégie
-			System.out.println(getSelectedButtonText(groupeBoutons));
+			if (strategieAleatoire.isSelected())
+				Horloge.setVenteAleatoire(true);
+			else if (strategieIntervalle.isSelected())
+				Horloge.setVenteAleatoire(false);
+
 			// Fermer la fenêtre du composant
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
@@ -40,10 +51,10 @@ public class PanneauStrategie extends JPanel {
 			SwingUtilities.getWindowAncestor((Component) e.getSource()).dispose();
 		});
 
-		groupeBoutons.add(strategie1);
-		groupeBoutons.add(strategie2);		
-		add(strategie1);
-		add(strategie2);		
+		groupeBoutons.add(strategieAleatoire);
+		groupeBoutons.add(strategieIntervalle);
+		add(strategieAleatoire);
+		add(strategieIntervalle);
 		add(boutonConfirmer);
 		add(boutonAnnuler);
 	}

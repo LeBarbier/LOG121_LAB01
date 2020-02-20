@@ -19,7 +19,6 @@ public class Simulation {
 		Environnement environnement = new Environnement();
 		FenetrePrincipale fenetre = new FenetrePrincipale();
 
-
 		listeNoeudSimulation.forEach((id, noeud) ->{
 			environnement.ajouterObservateur(noeud);
 		});

@@ -62,6 +62,20 @@ public class Model {
     }
 
     /**
+     * Initialisation du composant qui permet de parcourir le fichier de simulation XML
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
+    public static void initialiserDocumentReader(File configFile) throws ParserConfigurationException, IOException, SAXException {
+        // Accès à la racine du document de configuration
+        dbf = DocumentBuilderFactory.newInstance();
+        db = dbf.newDocumentBuilder();
+        doc = db.parse(configFile);
+        doc.getDocumentElement().normalize();
+    }
+
+    /**
      * Permet d'obtenir les informations pour une usine depuis les MetaData du fichier de configuration XML
      * @param _tableDonneeSimulation Informations que l'on désire dans la simulation graphique (Type d'usine, ID de l'usine, Position en X, Position en Y)
      * @return Retourne un noeud générer à partir des MetaData du fichier de configuration XML
@@ -70,7 +84,7 @@ public class Model {
         //Récupération de l'ensemble des éléments nommées "USINE" du fichier de configuration
         NodeList listeNodeUsine = doc.getDocumentElement().getElementsByTagName("metadonnees").item(0).getChildNodes();
         String typeUsineRecherchee = _tableDonneeSimulation[0];
-        String cheminIcone = "";
+        String[] listeCheminIcone = new String[4];
         String typeEntreposage = "";
         int limiteEntreposage = 0;
         int intervalProduction = 0;
@@ -90,8 +104,7 @@ public class Model {
                                 Node enfantActuelle = enfantsNodeActuelle.item(j);
 
                                 if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
-
+                                    listeCheminIcone = obtenirListePathsIcones(enfantActuelle);
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
                                     limiteEntreposage = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("capacite").getNodeValue());
                                     typeEntreposage = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
@@ -100,7 +113,7 @@ public class Model {
                             return new Entrepot(Integer.parseInt(_tableDonneeSimulation[1]),
                                     typeEntreposage,
                                     limiteEntreposage,
-                                    cheminIcone,
+                                    listeCheminIcone,
                                     Integer.parseInt(_tableDonneeSimulation[2]),
                                     Integer.parseInt(_tableDonneeSimulation[3]));
 
@@ -111,12 +124,9 @@ public class Model {
                                 Node enfantActuelle = enfantsNodeActuelle.item(j);
 
                                 if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
-
+                                    listeCheminIcone = obtenirListePathsIcones(enfantActuelle);
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("sortie")){
-                                    
                                     composanteSortie = new Composante(enfantActuelle.getAttributes().getNamedItem("type").getNodeValue());
-
 
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("interval-production")){
                                     intervalProduction = Integer.parseInt(enfantActuelle.getFirstChild().getNodeValue());
@@ -125,7 +135,7 @@ public class Model {
                             return new UsineProduction(Integer.parseInt(_tableDonneeSimulation[1]),
                                     composanteSortie,
                                     intervalProduction,
-                                    cheminIcone,
+                                    listeCheminIcone,
                                     Integer.parseInt(_tableDonneeSimulation[2]),
                                     Integer.parseInt(_tableDonneeSimulation[3]));
                         }
@@ -138,8 +148,7 @@ public class Model {
                                 Node enfantActuelle = enfantsNodeActuelle.item(j);
 
                                 if (enfantActuelle.getNodeName().equalsIgnoreCase("icones")){
-                                    cheminIcone = enfantActuelle.getChildNodes().item(1).getAttributes().getNamedItem("path").getNodeValue();
-
+                                    listeCheminIcone = obtenirListePathsIcones(enfantActuelle);
                                 } else if (enfantActuelle.getNodeName().equalsIgnoreCase("entree")){
                                     int quantite = Integer.parseInt(enfantActuelle.getAttributes().getNamedItem("quantite").getNodeValue());
                                     String typeEntree = enfantActuelle.getAttributes().getNamedItem("type").getNodeValue();
@@ -156,7 +165,7 @@ public class Model {
                                     mapComposanteEntree,
                                     composanteSortie,
                                     intervalProduction,
-                                    cheminIcone,
+                                    listeCheminIcone,
                                     Integer.parseInt(_tableDonneeSimulation[2]),
                                     Integer.parseInt(_tableDonneeSimulation[3]));
                         }
@@ -223,4 +232,18 @@ public class Model {
         return listeChemins;
     }
 
+    private static String[] obtenirListePathsIcones(Node _node){
+        int iterateurPathIcone = 0;
+        NodeList listeNodePathIcone = _node.getChildNodes();
+        String[] listePathsIconesTrouvees = new String[4];
+
+        for (int k = 0; k < listeNodePathIcone.getLength(); k++) {
+            Node nodePathIconeActuelle = listeNodePathIcone.item(k); // Une balise ICONE
+            if (nodePathIconeActuelle.getNodeName() == "icone"){
+                listePathsIconesTrouvees[iterateurPathIcone] = nodePathIconeActuelle.getAttributes().getNamedItem("path").getNodeValue();
+                iterateurPathIcone++;
+            }
+        }
+        return listePathsIconesTrouvees;
+    }
 }

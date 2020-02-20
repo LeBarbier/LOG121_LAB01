@@ -17,6 +17,7 @@
       <w>ajustement</w>
       <w>aleatoire</w>
       <w>alors</w>
+      <w>aléatoire</w>
       <w>annuler</w>
       <w>appeler</w>
       <w>appelé</w>
@@ -45,6 +46,7 @@
       <w>chacune</w>
       <w>chacunes</w>
       <w>changement</w>
+      <w>chaque</w>
       <w>chaîne</w>
       <w>chemin</w>
       <w>chemins</w>
@@ -80,12 +82,14 @@
       <w>déduit</w>
       <w>définissant</w>
       <w>définit</w>
+      <w>départ</w>
       <w>dépendant</w>
       <w>désigne</w>
       <w>désire</w>
       <w>désiré</w>
       <w>désirée</w>
       <w>détermine</w>
+      <w>effectuee</w>
       <w>empêcher</w>
       <w>enfant</w>
       <w>enfants</w>
@@ -100,13 +104,16 @@
       <w>etre</w>
       <w>evaluer</w>
       <w>faire</w>
+      <w>fait</w>
       <w>faux</w>
       <w>fenetre</w>
       <w>fenêtre</w>
       <w>ferme</w>
       <w>fermer</w>
       <w>fichier</w>
+      <w>filtre</w>
       <w>fixe</w>
+      <w>fonction</w>
       <w>forcement</w>
       <w>generique</w>
       <w>gestion</w>
@@ -120,6 +127,7 @@
       <w>horloge</w>
       <w>icone</w>
       <w>icones</w>
+      <w>icônes</w>
       <w>illustré</w>
       <w>implémente</w>
       <w>inclure</w>
@@ -143,6 +151,7 @@
       <w>metadonnees</w>
       <w>mettre</w>
       <w>mise</w>
+      <w>modifiee</w>
       <w>moteur</w>
       <w>mouvement</w>
       <w>métal</w>
@@ -216,11 +225,13 @@
       <w>stratégie</w>
       <w>supplémentaires</w>
       <w>supprimer</w>
+      <w>sélectionnez</w>
       <w>sélectionné</w>
       <w>taille</w>
       <w>temporaires</w>
       <w>toutes</w>
       <w>traite</w>
+      <w>trouvees</w>
       <w>trouver</w>
       <w>trouvé</w>
       <w>usine</w>

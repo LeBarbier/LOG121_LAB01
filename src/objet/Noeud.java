@@ -11,8 +11,10 @@ public abstract class Noeud implements Observer {
     public int id;
     public int posX;
     public int posY;
-    public String cheminICone;
+    public String iconeActuelle;
     Map<String, Integer> composanteEntreeInventaire; // ["NomComposante", NombreEnInventaire] -> Établit le nombre de composantes d'entrée actuellement dans l'inventaire de l'usine.
+    protected String[] listeCheminIcone;
+    protected int tempsConstruction;
 
     int evaluerIndicateur(){
         return 0;
@@ -22,6 +24,5 @@ public abstract class Noeud implements Observer {
             composanteEntreeInventaire.put(_composanteAjouter.nom, composanteEntreeInventaire.get(_composanteAjouter.nom) + 1);
         else
             composanteEntreeInventaire.put(_composanteAjouter.nom, 1);
-        System.out.println(composanteEntreeInventaire.toString());
     }
 }

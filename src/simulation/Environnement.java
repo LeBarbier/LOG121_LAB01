@@ -28,7 +28,7 @@ public class Environnement extends SwingWorker<Object, String> {
 
 		while(actif) {
 			Thread.sleep(DELAI);
-			firePropertyChange("TEST", null, "Ceci  est un test");
+			firePropertyChange("TEST", null, "");
 			horloge.tourPassee();
 		}
 		return null;

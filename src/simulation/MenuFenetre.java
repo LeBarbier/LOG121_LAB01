@@ -1,5 +1,7 @@
 package simulation;
 
+import objet.Model;
+
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -47,9 +49,11 @@ public class MenuFenetre extends JMenuBar {
 			int returnValue = fileChooser.showOpenDialog(null);
 
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
-				// TODO - Parser le fichier XML sélectionné
 				File selectedFile = fileChooser.getSelectedFile();
-				System.out.println(selectedFile.getAbsolutePath());
+				try {
+					Model.initialiserDocumentReader(selectedFile);
+				} catch(Exception ex){
+				}
 			}
 		});
 		
@@ -74,7 +78,6 @@ public class MenuFenetre extends JMenuBar {
 
 		menuChoisir.addActionListener((ActionEvent e) -> {
 			// Ouvrir la fenêtre de sélection
-			// TODO - Récupérer la bonne stratégie de vente
 			new FenetreStrategie();
 		});
 		add(menuSimulation);

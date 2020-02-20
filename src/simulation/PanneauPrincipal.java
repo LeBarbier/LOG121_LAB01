@@ -46,7 +46,7 @@ public class PanneauPrincipal extends JPanel {
 		}
 
 		listeNoeud.forEach((id, noeud) -> {
-			ImageIcon imageIcon = new ImageIcon(noeud.cheminICone);
+			ImageIcon imageIcon = new ImageIcon(noeud.iconeActuelle);
 			imageIcon.paintIcon(this, g, noeud.posX, noeud.posY);
 		});
 

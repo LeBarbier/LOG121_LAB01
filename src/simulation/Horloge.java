@@ -8,6 +8,7 @@ import java.util.Observer;
  */
 public class Horloge extends Observable {
     private int tourPassee;
+    private static boolean venteAleatoire = false;
 
     /**
      * Constructeur d'un objet horloge
@@ -25,5 +26,17 @@ public class Horloge extends Observable {
 
     public void ajouterObservateur(Observer _o){
         addObserver(_o);
+    }
+
+    public int getTourPassee(){
+        return tourPassee;
+    }
+
+    public static boolean isVenteAleatoire() {
+        return venteAleatoire;
+    }
+
+    public static void setVenteAleatoire(boolean venteAleatoire) {
+        Horloge.venteAleatoire = venteAleatoire;
     }
 }
